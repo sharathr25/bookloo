@@ -1,0 +1,33 @@
+class Restaurant extends Business {
+  constructor({
+    id,
+    name,
+    description,
+    address,
+    city,
+    state,
+    country,
+    pincode,
+    location,
+    rating,
+    numberOfRatings,
+    media,
+    features,
+  }: BusinessType) {
+    super({
+      id,
+      name,
+      description,
+      address,
+      city,
+      state,
+      country,
+      pincode,
+      location,
+      rating,
+      numberOfRatings,
+      media,
+      features,
+    });
+  }
+}
