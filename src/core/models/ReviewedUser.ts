@@ -6,8 +6,6 @@ class ReviewedUser {
   constructor({
     id,
     name,
-    email,
-    role,
     pic,
   }: {
     id: string;

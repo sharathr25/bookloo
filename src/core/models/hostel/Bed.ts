@@ -1,14 +1,7 @@
 class Bed extends Asset {
-  id: string;
   hostelId: string;
-  price: number;
-  discount: number;
-  currency: string;
   roomNo: number;
   bedNo: number;
-  bookings: [Booking];
-  media: [Media];
-  features: [Feature];
 
   constructor({
     id,
