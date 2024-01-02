@@ -2,14 +2,14 @@ type ReviewType = {
   id: string;
   rating: number;
   review: string;
-  user: User;
+  user: ReviewedUser;
 };
 
 class Review {
   id: string;
   rating: number;
   review: string;
-  user: User;
+  user: ReviewedUser;
 
   constructor({ id, rating, review, user }: ReviewType) {
     this.id = id;
