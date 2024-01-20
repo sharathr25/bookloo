@@ -1,4 +1,5 @@
 class Feature {
+  id: String;
   name: string;
   description: string;
   price: number;
@@ -7,6 +8,7 @@ class Feature {
   category: string;
 
   constructor({
+    id,
     name,
     description,
     price,
@@ -14,6 +16,7 @@ class Feature {
     currency,
     category,
   }: {
+    id: string;
     name: string;
     description: string;
     price: number;
@@ -21,6 +24,7 @@ class Feature {
     category: string;
     discount: number;
   }) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
