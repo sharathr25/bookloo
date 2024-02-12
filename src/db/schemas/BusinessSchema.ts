@@ -17,4 +17,4 @@ export const BusinessSchema = new Schema({
   numberOfRatings: { type: String, required: true },
   media: [MediaSchema],
   features: [FeatureSchema],
-});
+}, { discriminatorKey: 'type' });

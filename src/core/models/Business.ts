@@ -1,20 +1,6 @@
-type BusinessType = {
-  id: string;
-  name: string;
-  description: string;
-  address: string;
-  city: string;
-  state: string;
-  country: string;
-  pincode: string;
-  location: Location;
-  rating: number;
-  numberOfRatings: number;
-  media: [Media];
-  features: [Feature];
-};
+import { BusinessType } from "./BusinessType";
 
-class Business {
+export class Business {
   id: string;
   name: string;
   description: string;
@@ -28,6 +14,8 @@ class Business {
   location: Location;
   media: [Media];
   features: [Feature];
+  type: BusinessType;
+  stars?: number;
 
   constructor({
     id,
@@ -43,7 +31,25 @@ class Business {
     numberOfRatings,
     media,
     features,
-  }: BusinessType) {
+    type,
+    stars,
+  }: {
+    id: string;
+    name: string;
+    description: string;
+    address: string;
+    city: string;
+    state: string;
+    country: string;
+    pincode: string;
+    location: Location;
+    rating: number;
+    numberOfRatings: number;
+    media: [Media];
+    features: [Feature];
+    type: BusinessType;
+    stars?: number;
+  }) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -57,5 +63,7 @@ class Business {
     this.media = media;
     this.numberOfRatings = numberOfRatings;
     this.features = features;
+    this.type = type;
+    this.stars = stars;
   }
 }

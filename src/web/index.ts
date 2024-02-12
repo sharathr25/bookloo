@@ -1,14 +1,10 @@
 import { Elysia } from "elysia";
-import hotels from "./routes/hotels";
-import hostels from "./routes/hostels";
-import restaurants from "./routes/restaurants";
-import user from "./routes/users";
+import businesses from "./routes/businesses";
+import users from "./routes/users";
 
 const app = new Elysia()
-  .use(user)
-  .use(hotels)
-  .use(hostels)
-  .use(restaurants)
+  .use(users)
+  .use(businesses)
   .get("/", () => "Hello Elysia")
   .listen(3000);
 

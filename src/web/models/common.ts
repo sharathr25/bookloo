@@ -26,6 +26,7 @@ export const businessSpec = t.Object({
   ),
   rating: t.Number(),
   numberOfRatings: t.Number(),
+  stars: t.Optional(t.Number()),
 });
 
 export const idSpec = t.Object({
@@ -41,6 +42,7 @@ export const businessQuerySpec = t.Object({
   longitude: t.Optional(t.Number()),
   latitude: t.Optional(t.Number()),
   rating: t.Optional(t.Number()),
+  start: t.Optional(t.Number()),
 });
 
 export const businessResponse = t.Object({

@@ -1,6 +1,6 @@
 import { InferSchemaType, model } from "mongoose";
 import { UserSchema } from "../schemas/UserSchema";
-import { USER } from "../collections";
+import { USERS } from "../collections";
 
 export type UserType = InferSchemaType<typeof UserSchema>;
-export const UserModel = model(USER, UserSchema);
+export const UserModel = model(USERS, UserSchema);
