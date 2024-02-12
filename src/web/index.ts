@@ -1,10 +1,10 @@
 import { Elysia } from "elysia";
-import businesses from "./routes/businesses";
-import users from "./routes/users";
+import { userRoutes } from "./routes/users";
+import { businessRoutes } from "./routes/businesses";
 
 const app = new Elysia()
-  .use(users)
-  .use(businesses)
+  .use(userRoutes.get)
+  .use(businessRoutes.get)
   .get("/", () => "Hello Elysia")
   .listen(3000);
 

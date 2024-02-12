@@ -1,14 +1,4 @@
-import Elysia from "elysia";
-import { businessQuerySpec, businessSpec, idSpec } from "../../models/common";
+import { businessService } from "../../../core/services/business";
+import { BusinessRoutes } from "./BusinessRoutes";
 
-export default new Elysia().group("/businesses", (app) =>
-  app
-    .post("/", () => "create", { body: businessSpec })
-    .get("/", () => "get all", { query: businessQuerySpec })
-    .get("/:id", () => "get one", { params: idSpec })
-    .put("/:id", () => "update", {
-      body: businessSpec,
-      params: idSpec,
-    })
-    .delete("/:id", () => "delete", { params: idSpec })
-);
+export const businessRoutes = new BusinessRoutes(businessService);
