@@ -10,7 +10,7 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
     throw new Error("Method not implemented.");
   }
 
-  getOne(id: string): Business {
+  getById(id: string): Business {
     throw new Error("Method not implemented.");
   }
 

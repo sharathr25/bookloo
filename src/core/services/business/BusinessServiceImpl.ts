@@ -13,7 +13,7 @@ export class BusinessServiceImpl implements BusinessService {
     throw new Error("Method not implemented.");
   }
 
-  getOne(id: String): Business {
+  getById(id: String): Business {
     throw new Error("Method not implemented.");
   }
 
