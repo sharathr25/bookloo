@@ -1,19 +1,20 @@
 import { BusinessType } from "./BusinessType";
 
 export class Business {
-  id: string;
+  id?: string;
   name: string;
   description: string;
-  rating: number;
-  numberOfRatings: number;
+  rating?: number;
+  numberOfRatings?: number;
   address: string;
   city: string;
   state: string;
   country: string;
   pincode: string;
   location: Location;
-  media: [Media];
-  features: [Feature];
+  mediaUrls?: Media[];
+  mediaFiles?: File[];
+  features: Feature[];
   type: BusinessType;
   stars?: number;
 
@@ -29,12 +30,13 @@ export class Business {
     location,
     rating,
     numberOfRatings,
-    media,
+    mediaUrls,
+    mediaFiles,
     features,
     type,
     stars,
   }: {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     address: string;
@@ -43,10 +45,11 @@ export class Business {
     country: string;
     pincode: string;
     location: Location;
-    rating: number;
-    numberOfRatings: number;
-    media: [Media];
-    features: [Feature];
+    rating?: number;
+    numberOfRatings?: number;
+    mediaUrls?: Media[];
+    mediaFiles?: File[];
+    features: Feature[];
     type: BusinessType;
     stars?: number;
   }) {
@@ -60,7 +63,8 @@ export class Business {
     this.rating = rating;
     this.state = state;
     this.country = country;
-    this.media = media;
+    this.mediaUrls = mediaUrls;
+    this.mediaFiles = mediaFiles;
     this.numberOfRatings = numberOfRatings;
     this.features = features;
     this.type = type;

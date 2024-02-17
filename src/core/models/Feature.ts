@@ -1,5 +1,5 @@
 class Feature {
-  id: String;
+  id?: String;
   name: string;
   description: string;
   price: number;
@@ -16,7 +16,7 @@ class Feature {
     currency,
     category,
   }: {
-    id: string;
+    id?: string;
     name: string;
     description: string;
     price: number;
