@@ -1,28 +1,15 @@
 import { AssetType } from "./AssetType";
 
-export type AssetDataType = {
-  id: string;
-  businessId: String,
-  discount: number;
-  price: number;
-  currency: string;
-  bookings: [Booking];
-  media: [Media];
-  features: [Feature];
-  type: AssetType
-  capacity?: number;
-  roomNo?: number;
-  bedNo?: number
-}
-
 export class Asset {
-  id: string;
+  id?: string;
+  businessId: string;
   price: number;
   discount: number;
   currency: string;
-  bookings: [Booking];
-  media: [Media];
-  features: [Feature];
+  bookings?: Booking[];
+  mediaUrls?: Media[];
+  mediaFiles?: File[];
+  features: Feature[];
   type: AssetType;
   capacity?: number;
   roomNo?: number;
@@ -30,39 +17,45 @@ export class Asset {
 
   constructor({
     id,
+    businessId,
     price,
     discount,
     currency,
     bookings,
-    media,
+    mediaUrls,
+    mediaFiles,
     features,
     type,
     capacity,
     roomNo,
-    bedNo
+    bedNo,
   }: {
-    id: string;
+    id?: string;
+    businessId: string;
     discount: number;
     price: number;
     currency: string;
-    bookings: [Booking];
-    media: [Media];
-    features: [Feature];
-    type: AssetType,
-    capacity?: number,
-    roomNo?: number,
-    bedNo?: number,
+    bookings?: Booking[];
+    mediaUrls?: Media[];
+    mediaFiles?: File[];
+    features: Feature[];
+    type: AssetType;
+    capacity?: number;
+    roomNo?: number;
+    bedNo?: number;
   }) {
     this.id = id;
     this.discount = discount;
     this.price = price;
     this.currency = currency;
     this.bookings = bookings;
-    this.media = media;
+    this.mediaUrls = mediaUrls;
+    this.mediaFiles = mediaFiles;
     this.features = features;
     this.type = type;
     this.capacity = capacity;
     this.roomNo = roomNo;
     this.bedNo = bedNo;
+    this.businessId = businessId;
   }
 }

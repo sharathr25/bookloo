@@ -1,10 +1,11 @@
 import { Static, t } from "elysia";
-import { Feature } from "./Feature";
+import { Feature } from "../Feature";
 import { Location } from "../Location";
 import { BusinessType as BusinessTypeEnum } from "./BusinessType";
 import { MediaUrl } from "../MediaUrl";
 
 export const Business = t.Object({
+  id: t.Optional(t.String()),
   name: t.String(),
   description: t.String(),
   address: t.String(),

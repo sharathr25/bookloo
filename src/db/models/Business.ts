@@ -1,6 +1,6 @@
 import { InferSchemaType, Schema, model } from "mongoose";
 import { BusinessSchema } from "../schemas/BusinessSchema";
-import { BusinessType as BusinessTypes } from "../../core/models/BusinessType";
+import { BusinessType as BusinessTypes } from "./BusinessType";
 import { BUSINESSES } from "../collections";
 
 BusinessSchema.discriminator(

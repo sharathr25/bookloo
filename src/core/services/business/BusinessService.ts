@@ -1,9 +1,10 @@
 import { Business } from "../../models/Business";
+import { BusinessQuery } from "../../models/BusinessQuery";
 
 export interface BusinessService {
-  create(hotel: Business): undefined;
+  create(business: Business): undefined;
   getById(id: String): Business;
-  getAll(query: {}): Business;
+  getAll(query: BusinessQuery): Business;
   update(id: String, hotel: Business): undefined;
   delete(id: String): undefined;
 }

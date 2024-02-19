@@ -1,6 +1,6 @@
 import { Static, t } from "elysia";
 import { Location } from "../Location";
-import { Feature } from "./Feature";
+import { Feature } from "../Feature";
 import { BusinessType } from "./BusinessType";
 
 export const BusinessCreateSpec = t.Object({

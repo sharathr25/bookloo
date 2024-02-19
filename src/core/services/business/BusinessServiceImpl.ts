@@ -1,4 +1,5 @@
 import { Business } from "../../models/Business";
+import { BusinessQuery } from "../../models/BusinessQuery";
 import { BusinessesRepository } from "../../repositories/BusinessRespository";
 import { BusinessService } from "./BusinessService";
 
@@ -17,7 +18,7 @@ export class BusinessServiceImpl implements BusinessService {
     throw new Error("Method not implemented.");
   }
 
-  getAll(query: {}): Business {
+  getAll(query: BusinessQuery): Business {
     throw new Error("Method not implemented.");
   }
 

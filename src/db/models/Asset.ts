@@ -1,6 +1,6 @@
 import { InferSchemaType, model, Schema } from "mongoose";
 import { AssetSchema } from "../schemas/AssetSchema";
-import { AssetType as AssetTypes } from "../../core/models/AssetType";
+import { AssetType as AssetTypes } from "./AssetType";
 import { ASSETS } from "../collections";
 
 AssetSchema.discriminator(
