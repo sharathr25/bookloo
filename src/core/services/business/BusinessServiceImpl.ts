@@ -1,5 +1,5 @@
-import { Business } from "../../models/Business";
-import { BusinessQuery } from "../../models/BusinessQuery";
+import { Business } from "../../models/business/Business";
+import { BusinessQuery } from "../../models/business/BusinessQuery";
 import { BusinessesRepository } from "../../repositories/BusinessRespository";
 import { BusinessService } from "./BusinessService";
 

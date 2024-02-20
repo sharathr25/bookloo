@@ -1,4 +1,4 @@
-import { Business } from "../../core/models/Business";
+import { Business } from "../../core/models/business/Business";
 import { LocationType } from "../models/Location";
 import { BusinessType } from "../models/business/Business";
 import { FeatureMapper } from "./FeatureMapper";

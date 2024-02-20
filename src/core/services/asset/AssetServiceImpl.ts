@@ -1,5 +1,5 @@
-import { Asset } from "../../models/Asset";
-import { AssetQuery } from "../../models/AssetQuery";
+import { Asset } from "../../models/asset/Asset";
+import { AssetQuery } from "../../models/asset/AssetQuery";
 import { AssetRepository } from "../../repositories/AssetRepository";
 import { AssetService } from "./AssetService";
 
