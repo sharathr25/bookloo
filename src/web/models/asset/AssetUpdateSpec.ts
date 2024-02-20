@@ -7,7 +7,7 @@ export const AssetUpdateSpec = t.Object({
   discount: t.Number(),
   price: t.Number(),
   currency: t.String(),
-  mediaFiles: t.Optional(t.Files()),
+  mediaFiles: t.Files(),
   capacity: t.Optional(t.Number()),
   features: t.Array(Feature),
   roomNo: t.Optional(t.Number()),

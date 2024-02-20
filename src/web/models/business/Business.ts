@@ -15,7 +15,6 @@ export const Business = t.Object({
   pincode: t.String(),
   location: Location,
   mediaUrls: t.Optional(t.Array(MediaUrl)),
-  mediaFiles: t.Files(),
   rating: t.Optional(t.Number()),
   numberOfRatings: t.Optional(t.Number()),
   features: t.Array(Feature),

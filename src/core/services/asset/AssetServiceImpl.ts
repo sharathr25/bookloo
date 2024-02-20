@@ -1,5 +1,7 @@
 import { Asset } from "../../models/asset/Asset";
+import { AssetCreateSpec } from "../../models/asset/AssetCreateSpec";
 import { AssetQuery } from "../../models/asset/AssetQuery";
+import { AssetUpdateSpec } from "../../models/asset/AssetUpdateSpec";
 import { AssetRepository } from "../../repositories/AssetRepository";
 import { AssetService } from "./AssetService";
 
@@ -10,20 +12,23 @@ export class AssetServiceImpl implements AssetService {
     this.assetRepository = assetRepository;
   }
 
-  create(asset: Asset): undefined {
-    throw new Error("Method not implemented.");
-  }
-  getById(id: String): Asset {
-    throw new Error("Method not implemented.");
-  }
-  getAll(query: AssetQuery): Asset {
-    throw new Error("Method not implemented.");
-  }
-  update(id: String, hotel: Asset): undefined {
-    throw new Error("Method not implemented.");
+  async create(asset: AssetCreateSpec): Promise<undefined> {
+    await this.assetRepository.create(asset);
   }
 
-  delete(id: String): undefined {
-    throw new Error("Method not implemented.");
+  async getById(id: string): Promise<Asset | null> {
+    return await this.assetRepository.getById(id);
+  }
+
+  async getAll(query: AssetQuery): Promise<Asset[]> {
+    return await this.assetRepository.getAll(query);
+  }
+
+  async update(id: string, asset: AssetUpdateSpec): Promise<undefined> {
+    await this.assetRepository.update(id, asset);
+  }
+
+  async delete(id: string): Promise<undefined> {
+    await this.assetRepository.delete(id);
   }
 }
