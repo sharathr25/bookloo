@@ -27,6 +27,7 @@ export class AssetRoutes {
   }
 
   async getAll({ query }: { query: AssetQuerySpecType }) {
+    // need to allow only for admins
     return await this.assetService.getAll(query);
   }
 

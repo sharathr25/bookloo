@@ -17,12 +17,17 @@ import {
 import { Business } from "../../models/business/Business";
 import { Business as BusinessCore } from "../../../core/models/business/Business";
 import { Businesses } from "../../models/business/Businesses";
+import { AssetService } from "../../../core/services/asset/AssetService";
+import { Assets } from "../../models/asset/Assets";
+import { AssetMapper } from "../../mappers/AssetMapper";
 
 export class BusinessRoutes {
   businessService: BusinessService;
+  assetService: AssetService;
 
-  constructor(businessService: BusinessService) {
+  constructor(businessService: BusinessService, assetService: AssetService) {
     this.businessService = businessService;
+    this.assetService = assetService;
   }
 
   async create({ body }: { body: BusinessCreateSpecType }) {
@@ -58,6 +63,12 @@ export class BusinessRoutes {
     return BusinessMapper.map(business);
   }
 
+  async getAssets({ params }: { params: IdSpecType }) {
+    return (await this.assetService.getAll({ businessId: params.id })).map(
+      AssetMapper.map
+    );
+  }
+
   async delete({ params }: { params: IdSpecType }) {
     await this.businessService.delete(params.id);
   }
@@ -75,6 +86,10 @@ export class BusinessRoutes {
         .get("/:id", this.getOne, {
           params: IdSpec,
           response: { 200: Business, 404: t.Null() },
+        })
+        .get("/:id/assets", this.getAssets, {
+          params: IdSpec,
+          response: Assets,
         })
         .put("/:id", this.update, {
           body: BusinessUpdateSpec,
