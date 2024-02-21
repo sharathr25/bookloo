@@ -1,5 +1,7 @@
 import { Asset } from "../../core/models/asset/Asset";
+import { AssetCreateSpec } from "../../core/models/asset/AssetCreateSpec";
 import { AssetQuery } from "../../core/models/asset/AssetQuery";
+import { AssetUpdateSpec } from "../../core/models/asset/AssetUpdateSpec";
 import { AssetRepository } from "../../core/repositories/AssetRepository";
 import { AssetModel } from "../models/Asset";
 import { BusinessModel } from "../models/Business";
@@ -7,12 +9,12 @@ import { BusinessModel } from "../models/Business";
 export class AssetRepositoryImpl implements AssetRepository {
   static KM_IN_METERS = 1000;
 
-  async create(asset: Asset): Promise<undefined> {
+  async create(asset: AssetCreateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = asset;
     await new AssetModel(rest).save();
   }
 
-  async update(id: string, asset: Asset): Promise<undefined> {
+  async update(id: string, asset: AssetUpdateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = asset;
     await BusinessModel.updateOne(rest, { _id: id });
   }
