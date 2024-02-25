@@ -1,4 +1,4 @@
-enum MediaType {
-  IMAGE,
-  VIDEO,
+export enum MediaType {
+  IMAGE = "IMAGE",
+  VIDEO = "VIDEO",
 }

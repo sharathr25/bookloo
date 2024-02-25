@@ -1,8 +1,8 @@
 import { Static, t } from "elysia";
-import { MediaType } from "./MediaType";
+import { MediaEnumType } from "./MediaEnum";
 
 export const MediaUrl = t.Object({
-  type: t.Enum(MediaType),
+  type: MediaEnumType,
   url: t.String(),
 });
 

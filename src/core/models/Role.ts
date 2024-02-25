@@ -1,5 +1,5 @@
 enum Role {
-  ADMIN,
-  MANAGER,
-  PUBLIC,
+  ADMIN = "ADMIN",
+  MANAGER = "MANAGER",
+  PUBLIC = "PUBLIC",
 }

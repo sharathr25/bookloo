@@ -13,7 +13,7 @@ export class BusinessServiceImpl implements BusinessService {
   }
 
   async create(business: BusinessCreateSpec): Promise<undefined> {
-    await this.businessRepo.create(business);
+    await this.businessRepo.create({ ...business });
   }
 
   async getById(id: string): Promise<Business | null> {

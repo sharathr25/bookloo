@@ -1,7 +1,7 @@
 import { Static, t } from "elysia";
 import { Location } from "../Location";
 import { Feature } from "../Feature";
-import { BusinessType } from "./BusinessType";
+import { BusinessEnumType } from "./BusinessEnum";
 
 export const BusinessUpdateSpec = t.Object({
   name: t.String(),
@@ -15,7 +15,7 @@ export const BusinessUpdateSpec = t.Object({
   mediaFiles: t.Files(),
   features: t.Array(Feature),
   stars: t.Optional(t.Number()),
-  type: t.Enum(BusinessType),
+  type: BusinessEnumType,
 });
 
 export type BusinessUpdateSpecType = Static<typeof BusinessUpdateSpec>;

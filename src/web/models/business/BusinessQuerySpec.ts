@@ -1,5 +1,5 @@
 import { Static, t } from "elysia";
-import { BusinessType } from "./BusinessType";
+import { BusinessEnumType } from "./BusinessEnum";
 
 export const BusinessQuerySpec = t.Object({
   name: t.Optional(t.String()),
@@ -12,7 +12,7 @@ export const BusinessQuerySpec = t.Object({
   latitude: t.Optional(t.Number()),
   rating: t.Optional(t.Number()),
   stars: t.Optional(t.Number()),
-  type: t.Optional(t.Enum(BusinessType)),
+  type: t.Optional(BusinessEnumType),
 });
 
 export type BusinessQuerySpecType = Static<typeof BusinessQuerySpec>;

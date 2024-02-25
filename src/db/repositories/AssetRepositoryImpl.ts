@@ -7,8 +7,6 @@ import { AssetModel } from "../models/Asset";
 import { BusinessModel } from "../models/Business";
 
 export class AssetRepositoryImpl implements AssetRepository {
-  static KM_IN_METERS = 1000;
-
   async create(asset: AssetCreateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = asset;
     await new AssetModel(rest).save();
@@ -28,6 +26,7 @@ export class AssetRepositoryImpl implements AssetRepository {
 
     const aggregate = BusinessModel.aggregate();
 
+    aggregate.match({});
     if (businessId) aggregate.match({ businessId });
     if (type) aggregate.match({ type });
     if (currency) aggregate.match({ currency });

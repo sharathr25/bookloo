@@ -1,17 +1,26 @@
+import { KM_IN_METERS } from "../../core/constants";
 import { Business } from "../../core/models/business/Business";
+import { BusinessCreateSpec } from "../../core/models/business/BusinessCreateSpec";
 import { BusinessQuery } from "../../core/models/business/BusinessQuery";
+import { BusinessUpdateSpec } from "../../core/models/business/BusinessUpdateSpec";
 import { BusinessesRepository } from "../../core/repositories/BusinessRespository";
+import { BusinessMapper } from "../mappers/BusinessMapper";
 import { BusinessModel } from "../models/Business";
 
 export class BusinessesRepositoryImpl implements BusinessesRepository {
-  static KM_IN_METERS = 1000;
+  async create(business: BusinessCreateSpec): Promise<undefined> {
+    const { mediaFiles, location, ...rest } = business;
 
-  async create(business: Business): Promise<undefined> {
-    const { mediaFiles, ...rest } = business;
-    await new BusinessModel(rest).save();
+    await new BusinessModel({
+      ...rest,
+      location: {
+        type: "Point",
+        coordinates: [location.longitude, location.latitude],
+      },
+    }).save();
   }
 
-  async update(id: string, business: Business): Promise<undefined> {
+  async update(id: string, business: BusinessUpdateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = business;
     await BusinessModel.updateOne(rest, { _id: id });
   }
@@ -36,6 +45,7 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
 
     const aggregate = BusinessModel.aggregate();
 
+    aggregate.match({});
     if (name) aggregate.match({ name });
     if (type) aggregate.match({ type });
     if (city) aggregate.match({ city });
@@ -58,10 +68,12 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
           coordinates: [location.latitude, location.longitude],
         },
         distanceField: "dist.calculated",
-        maxDistance: BusinessesRepositoryImpl.KM_IN_METERS,
+        maxDistance: KM_IN_METERS,
         spherical: true,
       });
-    return aggregate.exec();
+    const businesses = await aggregate.exec();
+
+    return businesses.map(BusinessMapper.map);
   }
 
   async delete(id: string): Promise<undefined> {

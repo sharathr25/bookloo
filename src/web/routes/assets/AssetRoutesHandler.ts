@@ -1,21 +1,11 @@
-import Elysia from "elysia";
 import { AssetService } from "../../../core/services/asset/AssetService";
-import { IdSpec, IdSpecType } from "../../models/IdSpec";
-import {
-  AssetQuerySpec,
-  AssetQuerySpecType,
-} from "../../models/asset/AssetQuerySpec";
-import {
-  AssetUpdateSpec,
-  AssetUpdateSpecType,
-} from "../../models/asset/AssetUpdateSpec";
-import {
-  AssetCreateSpec,
-  AssetCreateSpecType,
-} from "../../models/asset/AssetCreateSpec";
+import { IdSpecType } from "../../models/IdSpec";
+import { AssetQuerySpecType } from "../../models/asset/AssetQuerySpec";
+import { AssetUpdateSpecType } from "../../models/asset/AssetUpdateSpec";
+import { AssetCreateSpecType } from "../../models/asset/AssetCreateSpec";
 import { AssetMapper } from "../../mappers/AssetMapper";
 
-export class AssetRoutes {
+export class AssetRoutesHandler {
   assetService: AssetService;
 
   constructor(assetService: AssetService) {
@@ -47,27 +37,5 @@ export class AssetRoutes {
 
   async delete({ params }: { params: IdSpecType }) {
     this.assetService.delete(params.id);
-  }
-
-  get() {
-    return new Elysia().group("/assets", (app) =>
-      app
-        .post("/", this.create, {
-          body: AssetCreateSpec,
-        })
-        .get("/", this.getAll, {
-          query: AssetQuerySpec,
-        })
-        .get("/:id", this.getOne, {
-          params: IdSpec,
-        })
-        .put("/:id", this.update, {
-          body: AssetUpdateSpec,
-          params: IdSpec,
-        })
-        .delete("/:id", this.delete, {
-          params: IdSpec,
-        })
-    );
   }
 }

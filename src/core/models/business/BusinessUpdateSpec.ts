@@ -1,4 +1,5 @@
-import { BusinessType } from "./BusinessType";
+import { Location } from "../Location";
+import { BusinessEnum } from "./BusinessEnum";
 
 export class BusinessUpdateSpec {
   name: string;
@@ -12,7 +13,7 @@ export class BusinessUpdateSpec {
   mediaFiles: File[];
   features: Feature[];
   stars?: number;
-  type: BusinessType;
+  type: BusinessEnum;
 
   constructor({
     name,
@@ -39,7 +40,7 @@ export class BusinessUpdateSpec {
     mediaFiles: File[];
     features: Feature[];
     stars?: number;
-    type: BusinessType;
+    type: BusinessEnum;
   }) {
     this.name = name;
     this.description = description;

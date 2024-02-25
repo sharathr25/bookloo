@@ -1,4 +1,6 @@
-class Media {
+import { MediaType } from "./MediaType";
+
+export class Media {
   type: MediaType;
   url: string;
 

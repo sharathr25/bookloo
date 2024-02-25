@@ -1,21 +1,22 @@
-import { BusinessType } from "./BusinessType";
+import { Location } from "../Location";
+import { Media } from "../Media";
+import { BusinessEnum } from "./BusinessEnum";
 
 export class Business {
-  id?: string;
+  id: string;
   name: string;
   description: string;
-  rating?: number;
-  numberOfRatings?: number;
   address: string;
   city: string;
   state: string;
   country: string;
   pincode: string;
   location: Location;
-  mediaUrls?: Media[];
-  mediaFiles?: File[];
+  mediaUrls: Media[];
   features: Feature[];
-  type: BusinessType;
+  type: BusinessEnum;
+  rating?: number;
+  numberOfRatings?: number;
   stars?: number;
 
   constructor({
@@ -31,12 +32,11 @@ export class Business {
     rating,
     numberOfRatings,
     mediaUrls,
-    mediaFiles,
     features,
     type,
     stars,
   }: {
-    id?: string;
+    id: string;
     name: string;
     description: string;
     address: string;
@@ -45,12 +45,11 @@ export class Business {
     country: string;
     pincode: string;
     location: Location;
+    mediaUrls: Media[];
+    features: Feature[];
+    type: BusinessEnum;
     rating?: number;
     numberOfRatings?: number;
-    mediaUrls?: Media[];
-    mediaFiles?: File[];
-    features: Feature[];
-    type: BusinessType;
     stars?: number;
   }) {
     this.id = id;
@@ -64,7 +63,6 @@ export class Business {
     this.state = state;
     this.country = country;
     this.mediaUrls = mediaUrls;
-    this.mediaFiles = mediaFiles;
     this.numberOfRatings = numberOfRatings;
     this.features = features;
     this.type = type;

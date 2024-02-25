@@ -1,5 +1,5 @@
-export enum BusinessType {
+export enum BusinessEnum {
   HOTEL,
   HOSTEL,
-  RESTUARANT
+  RESTUARANT,
 }

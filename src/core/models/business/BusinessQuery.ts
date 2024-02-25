@@ -1,4 +1,5 @@
-import { BusinessType } from "../../db/models/Business";
+import { Location } from "../Location";
+import { BusinessEnum } from "./BusinessEnum";
 
 export class BusinessQuery {
   name?: string;
@@ -9,7 +10,7 @@ export class BusinessQuery {
   country?: string;
   pincode?: string;
   location?: Location;
-  type?: BusinessType;
+  type?: BusinessEnum;
   stars?: number;
 
   constructor({
@@ -32,7 +33,7 @@ export class BusinessQuery {
     pincode?: string;
     rating?: number;
     numberOfRatings?: number;
-    type?: BusinessType;
+    type?: BusinessEnum;
     stars?: number;
     location?: Location;
   }) {
