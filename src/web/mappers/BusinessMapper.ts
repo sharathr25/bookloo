@@ -4,8 +4,14 @@ import { BusinessCreateSpec } from "../../core/models/business/BusinessCreateSpe
 import { BusinessEnum } from "../../core/models/business/BusinessEnum";
 import { BusinessUpdateSpec } from "../../core/models/business/BusinessUpdateSpec";
 import { LocationType } from "../models/Location";
-import { BusinessCreateSpecType } from "../models/business/BusinessCreateSpec";
-import { BusinessUpdateSpecType } from "../models/business/BusinessUpdateSpec";
+import {
+  BusinessCreateDataSpecType,
+  BusinessCreateSpecType,
+} from "../models/business/BusinessCreateSpec";
+import {
+  BusinessUpdateDataSpecType,
+  BusinessUpdateSpecType,
+} from "../models/business/BusinessUpdateSpec";
 import { BusinessType } from "../models/business/Business";
 import { FeatureMapper } from "./FeatureMapper";
 import { MediaUrlMapper } from "./MediaUrlMapper";
@@ -16,24 +22,29 @@ export class BusinessMapper {
     return new Location({ latitude, longitude });
   }
 
-  static mapCreateSpec(business: BusinessCreateSpecType): BusinessCreateSpec {
+  static mapCreateSpec(spec: BusinessCreateSpecType): BusinessCreateSpec {
+    const { data, files }: { data: string; files: File[] } = spec;
+    const business: BusinessCreateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
-
     return new BusinessCreateSpec({
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.map),
+      mediaFiles: files,
     });
   }
 
-  static mapUpdateSpec(business: BusinessUpdateSpecType): BusinessUpdateSpec {
+  static mapUpdateSpec(spec: BusinessUpdateSpecType): BusinessUpdateSpec {
+    const { data, files }: { data: string; files: File[] } = spec;
+    const business: BusinessUpdateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
     return new BusinessUpdateSpec({
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.map),
+      mediaFiles: files,
     });
   }
 

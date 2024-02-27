@@ -5,7 +5,7 @@ import { BusinessType } from "../models/Business";
 import { MediaUrlMapper } from "./MediaUrlMapper";
 
 export class BusinessMapper {
-  static map(business: BusinessType): Business {
+  static toCore(business: BusinessType): Business {
     const {
       _id,
       location,
@@ -19,7 +19,7 @@ export class BusinessMapper {
     const [longitude, latitude] = location.coordinates;
 
     return new Business({
-      id: _id,
+      id: _id && _id.toString(),
       rating: rating || undefined,
       numberOfRatings: numberOfRatings || undefined,
       stars: stars || undefined,

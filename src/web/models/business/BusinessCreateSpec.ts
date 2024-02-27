@@ -4,6 +4,11 @@ import { Feature } from "../Feature";
 import { BusinessEnumType } from "./BusinessEnum";
 
 export const BusinessCreateSpec = t.Object({
+  data: t.String(),
+  files: t.Files(),
+});
+
+export const BusinessCreateDataSpec = t.Object({
   name: t.String(),
   description: t.String(),
   address: t.String(),
@@ -19,3 +24,4 @@ export const BusinessCreateSpec = t.Object({
 });
 
 export type BusinessCreateSpecType = Static<typeof BusinessCreateSpec>;
+export type BusinessCreateDataSpecType = Static<typeof BusinessCreateDataSpec>;

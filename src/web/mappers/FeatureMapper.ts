@@ -1,3 +1,4 @@
+import { Feature } from "../../core/models/Feature";
 import { FeatureType } from "../models/Feature";
 
 export class FeatureMapper {

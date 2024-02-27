@@ -4,6 +4,10 @@ import { Feature } from "../Feature";
 import { BusinessEnumType } from "./BusinessEnum";
 
 export const BusinessUpdateSpec = t.Object({
+  data: t.String(),
+  files: t.Files(),
+});
+export const BusinessUpdateDataSpec = t.Object({
   name: t.String(),
   description: t.String(),
   address: t.String(),
@@ -13,9 +17,11 @@ export const BusinessUpdateSpec = t.Object({
   pincode: t.String(),
   location: Location,
   mediaFiles: t.Files(),
+  mediaFilesToRemove: t.Array(t.String()),
   features: t.Array(Feature),
   stars: t.Optional(t.Number()),
   type: BusinessEnumType,
 });
 
 export type BusinessUpdateSpecType = Static<typeof BusinessUpdateSpec>;
+export type BusinessUpdateDataSpecType = Static<typeof BusinessUpdateDataSpec>;

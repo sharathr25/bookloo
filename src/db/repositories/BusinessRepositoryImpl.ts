@@ -26,7 +26,8 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
   }
 
   async getById(id: string): Promise<Business | null> {
-    return await BusinessModel.findById(id);
+    const business = await BusinessModel.findById(id);
+    return business ? BusinessMapper.toCore(business?.toObject()) : null;
   }
 
   async getAll(query: BusinessQuery): Promise<Business[]> {
@@ -71,9 +72,9 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
         maxDistance: KM_IN_METERS,
         spherical: true,
       });
-    const businesses = await aggregate.exec();
 
-    return businesses.map(BusinessMapper.map);
+    const businesses = await aggregate.exec();
+    return businesses.map(BusinessMapper.toCore);
   }
 
   async delete(id: string): Promise<undefined> {
