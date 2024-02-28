@@ -30,7 +30,7 @@ export class BusinessMapper {
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
-      features: features.map(FeatureMapper.map),
+      features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
     });
   }
@@ -43,12 +43,12 @@ export class BusinessMapper {
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
-      features: features.map(FeatureMapper.map),
+      features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
     });
   }
 
-  static map(business: BusinessCore): BusinessType {
+  static toRest(business: BusinessCore): BusinessType {
     const { mediaUrls, ...rest } = business;
     return { ...rest, mediaUrls: mediaUrls.map(MediaUrlMapper.toRest) };
   }

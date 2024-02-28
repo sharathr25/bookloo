@@ -1,4 +1,5 @@
-import { AssetType } from "./AssetType";
+import { Feature } from "../Feature";
+import { AssetEnum } from "./AssetEnum";
 
 export class AssetCreateSpec {
   businessId: string;
@@ -10,7 +11,7 @@ export class AssetCreateSpec {
   features: Feature[];
   roomNo?: number;
   bedNo?: number;
-  type: AssetType;
+  type: AssetEnum;
 
   constructor({
     businessId,
@@ -33,7 +34,7 @@ export class AssetCreateSpec {
     features: Feature[];
     roomNo?: number;
     bedNo?: number;
-    type: AssetType;
+    type: AssetEnum;
   }) {
     this.businessId = businessId;
     this.type = type;

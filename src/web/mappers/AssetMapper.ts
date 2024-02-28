@@ -1,28 +1,40 @@
 import { FeatureMapper } from "./FeatureMapper";
-import { AssetCreateSpecType } from "../models/asset/AssetCreateSpec";
+import { AssetCreateDataSpecType } from "../models/asset/AssetCreateSpec";
 import { AssetUpdateSpec } from "../../core/models/asset/AssetUpdateSpec";
 import { AssetCreateSpec } from "../../core/models/asset/AssetCreateSpec";
 import { Asset } from "../../core/models/asset/Asset";
 import { AssetType } from "../models/asset/Asset";
+import { MediaUrlMapper } from "./MediaUrlMapper";
 
 export class AssetMapper {
-  static mapCreateSpec(asset: AssetCreateSpecType): AssetCreateSpec {
+  static mapCreateSpec(
+    businessId: string,
+    mediaFiles: File[],
+    asset: AssetCreateDataSpecType
+  ): AssetCreateSpec {
     const { features } = asset;
     return new AssetCreateSpec({
       ...asset,
-      features: features.map(FeatureMapper.map),
+      businessId,
+      mediaFiles,
+      features: features.map(FeatureMapper.toCore),
     });
   }
 
-  static mapUpdateSpec(asset: AssetUpdateSpec): AssetUpdateSpec {
+  static mapUpdateSpec(
+    mediaFiles: File[],
+    asset: AssetUpdateSpec
+  ): AssetUpdateSpec {
     const { features } = asset;
     return new AssetUpdateSpec({
       ...asset,
-      features: features.map(FeatureMapper.map),
+      mediaFiles,
+      features: features.map(FeatureMapper.toCore),
     });
   }
 
-  static map(asset: Asset): AssetType {
-    return { ...asset };
+  static toRest(asset: Asset): AssetType {
+    const { mediaUrls = [], ...rest } = asset;
+    return { ...rest, mediaUrls: mediaUrls.map(MediaUrlMapper.toRest) };
   }
 }

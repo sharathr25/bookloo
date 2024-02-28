@@ -1,18 +1,20 @@
-import { AssetType } from "./AssetType";
+import { Feature } from "../Feature";
+import { Media } from "../Media";
+import { AssetEnum } from "./AssetEnum";
 
 export class Asset {
-  id?: string;
+  id: string;
   businessId: string;
   price: number;
   discount: number;
   currency: string;
-  bookings?: Booking[];
+  bookings: Booking[];
   mediaUrls?: Media[];
-  mediaFiles?: File[];
   features: Feature[];
-  type: AssetType;
+  type: AssetEnum;
   capacity?: number;
   roomNo?: number;
+  tableNo?: number;
   bedNo?: number;
 
   constructor({
@@ -23,26 +25,26 @@ export class Asset {
     currency,
     bookings,
     mediaUrls,
-    mediaFiles,
     features,
     type,
     capacity,
     roomNo,
     bedNo,
+    tableNo,
   }: {
-    id?: string;
+    id: string;
     businessId: string;
     discount: number;
     price: number;
     currency: string;
-    bookings?: Booking[];
-    mediaUrls?: Media[];
-    mediaFiles?: File[];
+    bookings: Booking[];
+    mediaUrls: Media[];
     features: Feature[];
-    type: AssetType;
+    type: AssetEnum;
     capacity?: number;
     roomNo?: number;
     bedNo?: number;
+    tableNo?: number;
   }) {
     this.id = id;
     this.discount = discount;
@@ -50,12 +52,12 @@ export class Asset {
     this.currency = currency;
     this.bookings = bookings;
     this.mediaUrls = mediaUrls;
-    this.mediaFiles = mediaFiles;
     this.features = features;
     this.type = type;
     this.capacity = capacity;
     this.roomNo = roomNo;
     this.bedNo = bedNo;
     this.businessId = businessId;
+    this.tableNo = tableNo;
   }
 }

@@ -1,4 +1,4 @@
-export enum AssetType {
+export enum AssetEnum {
   ROOM,
   TABLE,
   BED,

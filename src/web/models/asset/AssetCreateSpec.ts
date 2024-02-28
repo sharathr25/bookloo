@@ -1,9 +1,8 @@
 import { Static, t } from "elysia";
 import { Feature } from "../Feature";
-import { AssetType as AssetTypeEnum } from "./AssetType";
+import { AssetEnumType } from "./AssetEnum";
 
-export const AssetCreateSpec = t.Object({
-  businessId: t.String(),
+export const AssetCreateDataSpec = t.Object({
   discount: t.Number(),
   price: t.Number(),
   currency: t.String(),
@@ -12,7 +11,12 @@ export const AssetCreateSpec = t.Object({
   features: t.Array(Feature),
   roomNo: t.Optional(t.Number()),
   bedNo: t.Optional(t.Number()),
-  type: t.Enum(AssetTypeEnum),
+  type: AssetEnumType,
+});
+export const AssetCreateSpec = t.Object({
+  data: t.String(),
+  files: t.Files(),
 });
 
 export type AssetCreateSpecType = Static<typeof AssetCreateSpec>;
+export type AssetCreateDataSpecType = Static<typeof AssetCreateDataSpec>;

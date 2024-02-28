@@ -19,13 +19,13 @@ export class BusinessMapper {
     const [longitude, latitude] = location.coordinates;
 
     return new Business({
-      id: _id && _id.toString(),
+      id: _id.toString(),
       rating: rating || undefined,
       numberOfRatings: numberOfRatings || undefined,
       stars: stars || undefined,
-      type: BusinessEnum.HOTEL,
+      type: BusinessEnum[type as keyof typeof BusinessEnum],
       location: new Location({ longitude, latitude }),
-      mediaUrls: mediaUrls.map(MediaUrlMapper.map),
+      mediaUrls: mediaUrls.map(MediaUrlMapper.toCore),
       ...rest,
     });
   }

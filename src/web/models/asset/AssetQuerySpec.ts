@@ -1,5 +1,5 @@
 import { Static, t } from "elysia";
-import { AssetType } from "./AssetType";
+import { AssetEnumType } from "./AssetEnum";
 
 export const AssetQuerySpec = t.Object({
   bedNo: t.Optional(t.Number()),
@@ -10,7 +10,7 @@ export const AssetQuerySpec = t.Object({
   discount: t.Optional(t.Number()),
   rating: t.Optional(t.Number()),
   stars: t.Optional(t.Number()),
-  type: t.Optional(t.Enum(AssetType)),
+  type: t.Optional(AssetEnumType),
 });
 
 export type AssetQuerySpecType = Static<typeof AssetQuerySpec>;

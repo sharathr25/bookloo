@@ -1,11 +1,11 @@
-import { AssetType } from "./AssetType";
+import { AssetEnum } from "./AssetEnum";
 
 export class AssetQuery {
   businessId?: string;
   price?: number;
   discount?: number;
   currency?: string;
-  type?: AssetType;
+  type?: AssetEnum;
   capacity?: number;
 
   constructor({
@@ -20,7 +20,7 @@ export class AssetQuery {
     discount?: number;
     price?: number;
     currency?: string;
-    type?: AssetType;
+    type?: AssetEnum;
     capacity?: number;
   }) {
     this.businessId = businessId;

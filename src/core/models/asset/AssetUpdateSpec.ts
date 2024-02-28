@@ -1,4 +1,5 @@
-import { AssetType } from "./AssetType";
+import { Feature } from "../Feature";
+import { AssetEnum } from "./AssetEnum";
 
 export class AssetUpdateSpec {
   discount: number;
@@ -9,7 +10,7 @@ export class AssetUpdateSpec {
   features: Feature[];
   roomNo?: number;
   bedNo?: number;
-  type: AssetType;
+  type: AssetEnum;
 
   constructor({
     discount,
@@ -30,7 +31,7 @@ export class AssetUpdateSpec {
     features: Feature[];
     roomNo?: number;
     bedNo?: number;
-    type: AssetType;
+    type: AssetEnum;
   }) {
     this.type = type;
     this.discount = discount;

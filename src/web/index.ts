@@ -9,8 +9,8 @@ export class WebServer {
   static listen(): undefined {
     const app = new Elysia()
       .use(userRoutes)
-      .use(businessRoutes)
       .use(assetRoutes)
+      .use(businessRoutes)
       .listen(PORT)
       .onError((e) => {
         console.error(e.error.message, {

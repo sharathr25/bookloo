@@ -1,3 +1,4 @@
+import { Feature } from "../Feature";
 import { Location } from "../Location";
 import { BusinessEnum } from "./BusinessEnum";
 

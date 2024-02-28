@@ -3,8 +3,8 @@ import { AssetCreateSpec } from "../../core/models/asset/AssetCreateSpec";
 import { AssetQuery } from "../../core/models/asset/AssetQuery";
 import { AssetUpdateSpec } from "../../core/models/asset/AssetUpdateSpec";
 import { AssetRepository } from "../../core/repositories/AssetRepository";
+import { AssetMapper } from "../mappers/AssetMapper";
 import { AssetModel } from "../models/Asset";
-import { BusinessModel } from "../models/Business";
 
 export class AssetRepositoryImpl implements AssetRepository {
   async create(asset: AssetCreateSpec): Promise<undefined> {
@@ -14,17 +14,18 @@ export class AssetRepositoryImpl implements AssetRepository {
 
   async update(id: string, asset: AssetUpdateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = asset;
-    await BusinessModel.updateOne(rest, { _id: id });
+    await AssetModel.updateOne(rest, { _id: id });
   }
 
   async getById(id: string): Promise<Asset | null> {
-    return await AssetModel.findById(id);
+    const asset = await AssetModel.findById(id);
+    return asset ? AssetMapper.toCore(asset.toObject()) : null;
   }
 
   async getAll(query: AssetQuery): Promise<Asset[]> {
     const { businessId, price, discount, type, currency, capacity } = query;
 
-    const aggregate = BusinessModel.aggregate();
+    const aggregate = AssetModel.aggregate();
 
     aggregate.match({});
     if (businessId) aggregate.match({ businessId });
@@ -34,10 +35,11 @@ export class AssetRepositoryImpl implements AssetRepository {
     if (price) aggregate.match({ price });
     if (discount) aggregate.match({ discount: { $gte: discount } });
 
-    return aggregate.exec();
+    const assets = await aggregate.exec();
+    return assets.map(AssetMapper.toCore);
   }
 
   async delete(id: string): Promise<undefined> {
-    await BusinessModel.deleteOne({ _id: id });
+    await AssetModel.deleteOne({ _id: id });
   }
 }

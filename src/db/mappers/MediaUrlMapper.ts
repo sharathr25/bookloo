@@ -3,7 +3,7 @@ import { MediaType } from "../schemas/MediaSchema";
 import { MediaType as MediaEnum } from "../../core/models/MediaType";
 
 export class MediaUrlMapper {
-  static map(media: MediaType): Media {
+  static toCore(media: MediaType): Media {
     return new Media({ type: MediaEnum[media.type], url: media.type });
   }
 }

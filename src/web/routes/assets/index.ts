@@ -1,16 +1,19 @@
-import Elysia from "elysia";
+import Elysia, { t } from "elysia";
 import { assetService } from "../../../core/services/asset";
 import { AssetRoutesHandler } from "./AssetRoutesHandler";
-import { IdSpec } from "../../models/IdSpec";
 import { AssetUpdateSpec } from "../../models/asset/AssetUpdateSpec";
 import { AssetQuerySpec } from "../../models/asset/AssetQuerySpec";
 import { AssetCreateSpec } from "../../models/asset/AssetCreateSpec";
+import { AssetIdSpec } from "../../models/asset/AssetIdSpec";
+import { BusinessIdSpec } from "../../models/business/BusinessIdSpec";
+import { Assets } from "../../models/asset/Assets";
+import { Asset } from "../../models/asset/Asset";
 
 const assetRoutesHandler = new AssetRoutesHandler(assetService);
 
 export const assetRoutes = new Elysia().group(
-  "/business/:id/assets",
-  { params: IdSpec },
+  "/businesses/:businessId/assets",
+  { params: BusinessIdSpec },
   (app) =>
     app
       .post("/", assetRoutesHandler.create.bind(assetRoutesHandler), {
@@ -18,15 +21,20 @@ export const assetRoutes = new Elysia().group(
       })
       .get("/", assetRoutesHandler.getAll.bind(assetRoutesHandler), {
         query: AssetQuerySpec,
+        response: Assets,
       })
-      .get("/:id", assetRoutesHandler.getOne.bind(assetRoutesHandler), {
-        params: IdSpec,
+      .get("/:assetId", assetRoutesHandler.getOne.bind(assetRoutesHandler), {
+        params: AssetIdSpec,
+        response: {
+          200: Asset,
+          404: t.Null(),
+        },
       })
-      .put("/:id", assetRoutesHandler.update.bind(assetRoutesHandler), {
+      .put("/:assetId", assetRoutesHandler.update.bind(assetRoutesHandler), {
         body: AssetUpdateSpec,
-        params: IdSpec,
+        params: AssetIdSpec,
       })
-      .delete("/:id", assetRoutesHandler.delete.bind(assetRoutesHandler), {
-        params: IdSpec,
+      .delete("/:assetId", assetRoutesHandler.delete.bind(assetRoutesHandler), {
+        params: AssetIdSpec,
       })
 );
