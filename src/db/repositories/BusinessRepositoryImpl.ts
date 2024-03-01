@@ -1,4 +1,4 @@
-import { KM_IN_METERS } from "../../core/constants";
+import { TEN_KM_IN_METERS } from "../../core/constants";
 import { Business } from "../../core/models/business/Business";
 import { BusinessCreateSpec } from "../../core/models/business/BusinessCreateSpec";
 import { BusinessQuery } from "../../core/models/business/BusinessQuery";
@@ -21,8 +21,14 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
   }
 
   async update(id: string, business: BusinessUpdateSpec): Promise<undefined> {
-    const { mediaFiles, ...rest } = business;
-    await BusinessModel.updateOne(rest, { _id: id });
+    const { mediaFiles, location, ...rest } = business;
+    await BusinessModel.findByIdAndUpdate(id, {
+      ...rest,
+      location: {
+        type: "Point",
+        coordinates: [location.longitude, location.latitude],
+      },
+    });
   }
 
   async getById(id: string): Promise<Business | null> {
@@ -41,12 +47,23 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
       pincode,
       rating,
       type,
-      location,
+      longitude,
+      latitude,
+      page,
+      pageSize,
     } = query;
 
     const aggregate = BusinessModel.aggregate();
 
-    aggregate.match({});
+    if (longitude && latitude)
+      aggregate.near({
+        near: {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        },
+        distanceField: "distance",
+        maxDistance: TEN_KM_IN_METERS,
+      });
     if (name) aggregate.match({ name });
     if (type) aggregate.match({ type });
     if (city) aggregate.match({ city });
@@ -62,16 +79,8 @@ export class BusinessesRepositoryImpl implements BusinessesRepository {
           path: "address",
         },
       });
-    if (location)
-      aggregate.near({
-        near: {
-          type: "Point",
-          coordinates: [location.latitude, location.longitude],
-        },
-        distanceField: "dist.calculated",
-        maxDistance: KM_IN_METERS,
-        spherical: true,
-      });
+    aggregate.skip((page - 1) * pageSize);
+    aggregate.limit(pageSize);
 
     const businesses = await aggregate.exec();
     return businesses.map(BusinessMapper.toCore);

@@ -19,6 +19,7 @@ export const Business = t.Object({
   numberOfRatings: t.Optional(t.Number()),
   features: t.Array(Feature),
   stars: t.Optional(t.Number()),
+  distance: t.Optional(t.Number()),
   type: BusinessEnumType,
 });
 

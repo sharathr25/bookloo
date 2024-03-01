@@ -5,6 +5,7 @@ import { BusinessQuerySpecType } from "../../models/business/BusinessQuerySpec";
 import { BusinessUpdateSpecType } from "../../models/business/BusinessUpdateSpec";
 import { Business as BusinessCore } from "../../../core/models/business/Business";
 import { BusinessIdSpecType } from "../../models/business/BusinessIdSpec";
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from "../../../core/constants";
 
 export class BusinessRoutesHandler {
   businessService: BusinessService;
@@ -31,7 +32,11 @@ export class BusinessRoutesHandler {
   }
 
   async getAll({ query }: { query: BusinessQuerySpecType }) {
-    const businesses: BusinessCore[] = await this.businessService.getAll(query);
+    const businesses: BusinessCore[] = await this.businessService.getAll({
+      page: DEFAULT_PAGE,
+      pageSize: DEFAULT_PAGE_SIZE,
+      ...query,
+    });
     return businesses.map(BusinessMapper.toRest);
   }
 

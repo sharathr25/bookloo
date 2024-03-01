@@ -9,9 +9,12 @@ export class BusinessQuery {
   state?: string;
   country?: string;
   pincode?: string;
-  location?: Location;
+  longitude?: number;
+  latitude?: number;
   type?: BusinessEnum;
   stars?: number;
+  page: number;
+  pageSize: number;
 
   constructor({
     name,
@@ -23,7 +26,10 @@ export class BusinessQuery {
     rating,
     type,
     stars,
-    location,
+    longitude,
+    latitude,
+    page,
+    pageSize,
   }: {
     name?: string;
     address?: string;
@@ -35,7 +41,10 @@ export class BusinessQuery {
     numberOfRatings?: number;
     type?: BusinessEnum;
     stars?: number;
-    location?: Location;
+    longitude?: number;
+    latitude?: number;
+    page: number;
+    pageSize: number;
   }) {
     this.name = name;
     this.address = address;
@@ -46,6 +55,9 @@ export class BusinessQuery {
     this.country = country;
     this.type = type;
     this.stars = stars;
-    this.location = location;
+    this.longitude = longitude;
+    this.latitude = latitude;
+    this.page = page;
+    this.pageSize = pageSize;
   }
 }

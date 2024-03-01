@@ -14,7 +14,7 @@ export class AssetRepositoryImpl implements AssetRepository {
 
   async update(id: string, asset: AssetUpdateSpec): Promise<undefined> {
     const { mediaFiles, ...rest } = asset;
-    await AssetModel.updateOne(rest, { _id: id });
+    await AssetModel.findByIdAndUpdate(id, rest);
   }
 
   async getById(id: string): Promise<Asset | null> {

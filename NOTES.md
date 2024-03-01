@@ -80,3 +80,17 @@
 
 - English
 - Hindi
+
+## Data Examples
+
+### Business
+
+```copy
+{"name":"Achgal Yatri Nivas","description":"Hotel near bus stand with A/C and parking facility","address":"kollegal bustand","city":"Kollegal","state":"Karnataka","country":"India","pincode":"571440","location":{"longitude":77.109016,"latitude":12.152976},"features":[{"name":"WIFI","description":"Super speed wifi","price":0,"discount":0,"currency":"INR","category":"INTERNET"}],"type":"HOTEL"}
+```
+
+### Asset
+
+```
+{"discount":0,"price":0,"currency":"INR","capacity":2,"roomNo":101,"type":"ROOM","features":[{"name":"Free Wifi","description":"WiFi is available in public areas and is free of charge.","price":0,"discount":0,"currency":"INR","category":"Internet"}]}
+```

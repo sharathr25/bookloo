@@ -19,6 +19,7 @@ export class Business {
   rating?: number;
   numberOfRatings?: number;
   stars?: number;
+  distance?: number;
 
   constructor({
     id,
@@ -36,6 +37,7 @@ export class Business {
     features,
     type,
     stars,
+    distance,
   }: {
     id: string;
     name: string;
@@ -52,6 +54,7 @@ export class Business {
     rating?: number;
     numberOfRatings?: number;
     stars?: number;
+    distance?: number;
   }) {
     this.id = id;
     this.name = name;
@@ -68,5 +71,6 @@ export class Business {
     this.features = features;
     this.type = type;
     this.stars = stars;
+    this.distance = distance;
   }
 }
