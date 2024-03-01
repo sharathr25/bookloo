@@ -2,6 +2,7 @@ import { Elysia } from "elysia";
 import { userRoutes } from "./routes/users";
 import { businessRoutes } from "./routes/businesses";
 import { assetRoutes } from "./routes/assets";
+import { reviewRoutes } from "./routes/reviews";
 
 const PORT = 3000;
 
@@ -10,6 +11,7 @@ export class WebServer {
     const app = new Elysia()
       .use(userRoutes)
       .use(assetRoutes)
+      .use(reviewRoutes)
       .use(businessRoutes)
       .listen(PORT)
       .onError((e) => {

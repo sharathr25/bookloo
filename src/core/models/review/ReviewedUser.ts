@@ -1,23 +1,23 @@
 class ReviewedUser {
   id: string;
   name: string;
-  pic: string;
+  profilePicUrl?: string;
   email: string;
 
   constructor({
     id,
     name,
-    pic,
+    profilePicUrl,
     email,
   }: {
     id: string;
     name: string;
     email: string;
-    pic: string;
+    profilePicUrl?: string;
   }) {
     this.id = id;
     this.name = name;
-    this.pic = pic;
+    this.profilePicUrl = profilePicUrl;
     this.email = email;
   }
 }

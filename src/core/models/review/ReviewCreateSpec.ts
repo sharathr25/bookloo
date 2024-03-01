@@ -1,20 +1,17 @@
-type ReviewType = {
-  id: string;
+type ReviewCreateSpecType = {
   rating: number;
   review: string;
   user: ReviewedUser;
   businessId: string;
 };
 
-export class Review {
-  id: string;
+export class ReviewCreateSpec {
   businessId: string;
   rating: number;
   review: string;
   user: ReviewedUser;
 
-  constructor({ id, rating, review, user, businessId }: ReviewType) {
-    this.id = id;
+  constructor({ rating, review, user, businessId }: ReviewCreateSpecType) {
     this.review = review;
     this.rating = rating;
     this.user = user;
