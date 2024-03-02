@@ -1,5 +1,5 @@
 export class Feature {
-  id?: String;
+  id?: string;
   name: string;
   description: string;
   price: number;

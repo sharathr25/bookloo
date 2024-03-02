@@ -16,7 +16,7 @@ export class ReviewRepositoryImpl implements ReviewRepository {
 
   async getByBusinessId(businessId: string): Promise<Review[]> {
     const reivews = await ReviewModel.find({ businessId });
-    return reivews.map(ReviewMapper.toCore);
+    return reivews.map((r) => r.toObject()).map(ReviewMapper.toCore);
   }
 
   async delete(id: string): Promise<undefined> {

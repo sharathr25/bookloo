@@ -4,9 +4,10 @@ import { BusinessIdSpec } from "../../models/business/BusinessIdSpec";
 import { reviewService } from "../../../core/services/review";
 import { ReviewRoutesHandler } from "./ReviewRouteHandler";
 import { ReviewIdSpec } from "../../models/review/ReviewIdSpec";
-import { ReviewCreateSpec } from "../../models/review/CreateReviewSpec";
+import { ReviewCreateSpec } from "../../models/review/ReviewCreateSpec";
 import { Reviews } from "../../models/review/Reviews";
 import { Review } from "../../models/review/Review";
+import { ReviewDeleteSpec } from "../../models/review/ReviewDeleteSpec";
 
 const reviewRoutesHandler = new ReviewRoutesHandler(reviewService);
 
@@ -33,7 +34,7 @@ export const reviewRoutes = new Elysia().group(
         "/:reviewId",
         reviewRoutesHandler.delete.bind(reviewRoutesHandler),
         {
-          params: ReviewIdSpec,
+          params: ReviewDeleteSpec,
         }
       )
 );

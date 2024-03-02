@@ -10,16 +10,19 @@ export class ReviewServiceImpl implements ReviewService {
     this.reviewRepo = reviewRepo;
   }
 
-  create(review: ReviewCreateSpec): Promise<undefined> {
-    throw new Error("Method not implemented.");
+  async create(review: ReviewCreateSpec): Promise<undefined> {
+    await this.reviewRepo.create(review);
   }
-  getById(id: string): Promise<Review | null> {
-    throw new Error("Method not implemented.");
+
+  async getById(id: string): Promise<Review | null> {
+    return await this.reviewRepo.getById(id);
   }
-  getByBusinessId(businessId: String): Promise<Review[]> {
-    throw new Error("Method not implemented.");
+
+  async getByBusinessId(businessId: string): Promise<Review[]> {
+    return await this.reviewRepo.getByBusinessId(businessId);
   }
-  delete(id: string): Promise<undefined> {
-    throw new Error("Method not implemented.");
+
+  async delete(id: string): Promise<undefined> {
+    await this.reviewRepo.delete(id);
   }
 }

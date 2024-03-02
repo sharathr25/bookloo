@@ -1,9 +1,10 @@
 import { BusinessIdSpecType } from "../../models/business/BusinessIdSpec";
 import { ReviewService } from "../../../core/services/review/ReviewService";
 import { ReviewIdSpecType } from "../../models/review/ReviewIdSpec";
-import { ReviewCreateSpecType } from "../../models/review/CreateReviewSpec";
+import { ReviewCreateSpecType } from "../../models/review/ReviewCreateSpec";
 import { ReviewMapper } from "../../mappers/ReviewMapper";
 import { Review } from "../../../core/models/review/Review";
+import { ReviewDeleteSpecType } from "../../models/review/ReviewDeleteSpec";
 
 export class ReviewRoutesHandler {
   reviewService: ReviewService;
@@ -42,7 +43,7 @@ export class ReviewRoutesHandler {
     return ReviewMapper.toRest(review);
   }
 
-  async delete({ params }: { params: ReviewIdSpecType }) {
+  async delete({ params }: { params: ReviewDeleteSpecType }) {
     this.reviewService.delete(params.reviewId);
   }
 }
