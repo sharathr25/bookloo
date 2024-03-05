@@ -1,6 +1,7 @@
 import { Static, t } from "elysia";
 import { Feature } from "../Feature";
 import { AssetEnum } from "./AssetEnum";
+import { MediaUrl } from "../MediaUrl";
 
 export const AssetUpdateDataSpec = t.Object({
   discount: t.Number(),
@@ -8,6 +9,7 @@ export const AssetUpdateDataSpec = t.Object({
   currency: t.String(),
   mediaFiles: t.Files(),
   capacity: t.Optional(t.Number()),
+  mediaUrls: t.Array(MediaUrl),
   features: t.Array(Feature),
   roomNo: t.Optional(t.Number()),
   bedNo: t.Optional(t.Number()),

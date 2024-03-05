@@ -18,6 +18,8 @@ export class AssetMapper {
       businessId,
       mediaFiles,
       features: features.map(FeatureMapper.toCore),
+      mediaUrls: [],
+      id: "",
     });
   }
 
@@ -25,11 +27,12 @@ export class AssetMapper {
     mediaFiles: File[],
     asset: AssetUpdateSpec
   ): AssetUpdateSpec {
-    const { features } = asset;
+    const { features, mediaUrls } = asset;
     return new AssetUpdateSpec({
       ...asset,
       mediaFiles,
       features: features.map(FeatureMapper.toCore),
+      mediaUrls: mediaUrls.map(MediaUrlMapper.toCore),
     });
   }
 

@@ -32,6 +32,8 @@ export class BusinessMapper {
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
+      id: "",
+      mediaUrls: [],
     });
   }
 
@@ -45,6 +47,7 @@ export class BusinessMapper {
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
+      mediaUrls: [],
     });
   }
 

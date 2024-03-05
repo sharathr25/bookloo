@@ -1,5 +1,6 @@
 import { Feature } from "../Feature";
 import { Location } from "../Location";
+import { Media } from "../Media";
 import { BusinessEnum } from "./BusinessEnum";
 
 export class BusinessUpdateSpec {
@@ -11,6 +12,7 @@ export class BusinessUpdateSpec {
   country: string;
   pincode: string;
   location: Location;
+  mediaUrls: Media[];
   mediaFiles: File[];
   features: Feature[];
   stars?: number;
@@ -25,6 +27,7 @@ export class BusinessUpdateSpec {
     country,
     pincode,
     location,
+    mediaUrls,
     mediaFiles,
     features,
     stars,
@@ -38,6 +41,7 @@ export class BusinessUpdateSpec {
     country: string;
     pincode: string;
     location: Location;
+    mediaUrls: Media[];
     mediaFiles: File[];
     features: Feature[];
     stars?: number;
@@ -51,6 +55,7 @@ export class BusinessUpdateSpec {
     this.country = country;
     this.pincode = pincode;
     this.location = location;
+    this.mediaUrls = mediaUrls;
     this.mediaFiles = mediaFiles;
     this.features = features;
     this.stars = stars;
