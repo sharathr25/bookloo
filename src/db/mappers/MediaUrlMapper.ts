@@ -1,9 +1,9 @@
-import { Media } from "../../core/models/Media";
+import { MediaUrl } from "../../core/models/MediaUrl";
 import { MediaType } from "../schemas/MediaSchema";
-import { MediaEnum } from "../../core/models/MediaType";
+import { MediaEnum } from "../../core/models/MediaEnum";
 
 export class MediaUrlMapper {
-  static toCore(media: MediaType): Media {
-    return new Media({ type: MediaEnum[media.type], url: media.type });
+  static toCore(media: MediaType): MediaUrl {
+    return { type: MediaEnum[media.type], url: media.type };
   }
 }

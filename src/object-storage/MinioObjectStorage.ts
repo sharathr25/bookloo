@@ -1,7 +1,7 @@
 import { Client } from "minio";
 import { ObjectStorage } from "../core/services/ObjectStorage";
-import { Media } from "../core/models/Media";
-import { MediaEnum } from "../core/models/MediaType";
+import { MediaUrl } from "../core/models/MediaUrl";
+import { MediaEnum } from "../core/models/MediaEnum";
 
 const MINIO_SERVER_ENDPOINT = "127.0.0.1";
 const MINIO_SERVER_PORT = 9000;
@@ -27,7 +27,7 @@ export class MinioObjectStorage implements ObjectStorage {
     }
   }
 
-  async storeFile(folderName: string, file: File): Promise<Media> {
+  async storeFile(folderName: string, file: File): Promise<MediaUrl> {
     const arrBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrBuffer);
     const fileName = `${folderName}/${file.name}`;
@@ -38,14 +38,14 @@ export class MinioObjectStorage implements ObjectStorage {
       buffer.length
     );
 
-    return new Media({
+    return {
       url: `${MINIO_SERVER_ENDPOINT}:${MINIO_SERVER_PORT}/${fileName}`,
       type: MediaEnum.IMAGE,
-    });
+    };
   }
 
-  async storeFiles(bucketName: string, files: File[]): Promise<Media[]> {
-    const mediaUrls: Media[] = [];
+  async storeFiles(bucketName: string, files: File[]): Promise<MediaUrl[]> {
+    const mediaUrls: MediaUrl[] = [];
     for (const file of files) {
       const mediaUrl = await this.storeFile(bucketName, file);
       mediaUrls.push(mediaUrl);

@@ -7,33 +7,33 @@ import { AssetType } from "../models/asset/Asset";
 import { MediaUrlMapper } from "./MediaUrlMapper";
 
 export class AssetMapper {
-  static mapCreateSpec(
+  static toCoreCreateSpec(
     businessId: string,
     mediaFiles: File[],
     asset: AssetCreateDataSpecType
   ): AssetCreateSpec {
     const { features } = asset;
-    return new AssetCreateSpec({
+    return {
       ...asset,
       businessId,
       mediaFiles,
       features: features.map(FeatureMapper.toCore),
       mediaUrls: [],
       id: "",
-    });
+    };
   }
 
-  static mapUpdateSpec(
+  static toCoreUpdateSpec(
     mediaFiles: File[],
     asset: AssetUpdateSpec
   ): AssetUpdateSpec {
     const { features, mediaUrls } = asset;
-    return new AssetUpdateSpec({
+    return {
       ...asset,
       mediaFiles,
       features: features.map(FeatureMapper.toCore),
       mediaUrls: mediaUrls.map(MediaUrlMapper.toCore),
-    });
+    };
   }
 
   static toRest(asset: Asset): AssetType {

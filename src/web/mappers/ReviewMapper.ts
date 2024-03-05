@@ -1,16 +1,15 @@
 import { Review } from "../../core/models/review/Review";
 import { ReviewCreateSpec } from "../../core/models/review/ReviewCreateSpec";
-import { ReviewCreateSpecType } from "../models/review/CreateReviewSpec";
 
 export class ReviewMapper {
   static toCoreCreateSpec(
     businessId: string,
-    review: ReviewCreateSpecType
+    review: ReviewCreateSpec
   ): ReviewCreateSpec {
-    return new ReviewCreateSpec({
+    return {
       ...review,
       businessId,
-    });
+    };
   }
 
   static toRest(review: Review) {

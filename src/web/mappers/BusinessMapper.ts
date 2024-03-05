@@ -19,14 +19,14 @@ import { MediaUrlMapper } from "./MediaUrlMapper";
 export class BusinessMapper {
   static mapLocation(location: LocationType): Location {
     const { latitude, longitude } = location;
-    return new Location({ latitude, longitude });
+    return { latitude, longitude };
   }
 
   static mapCreateSpec(spec: BusinessCreateSpecType): BusinessCreateSpec {
     const { data, files }: { data: string; files: File[] } = spec;
     const business: BusinessCreateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
-    return new BusinessCreateSpec({
+    return {
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
@@ -34,21 +34,21 @@ export class BusinessMapper {
       mediaFiles: files,
       id: "",
       mediaUrls: [],
-    });
+    };
   }
 
   static mapUpdateSpec(spec: BusinessUpdateSpecType): BusinessUpdateSpec {
     const { data, files }: { data: string; files: File[] } = spec;
     const business: BusinessUpdateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
-    return new BusinessUpdateSpec({
+    return {
       ...rest,
       type: BusinessEnum[type],
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
       mediaUrls: [],
-    });
+    };
   }
 
   static toRest(business: BusinessCore): BusinessType {

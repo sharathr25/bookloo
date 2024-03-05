@@ -4,13 +4,13 @@ import { FeatureType } from "../models/Feature";
 export class FeatureMapper {
   static toCore(feature: FeatureType): Feature {
     const { name, description, price, discount, currency, category } = feature;
-    return new Feature({
+    return {
       name,
       description,
       price,
       discount,
       category,
       currency,
-    });
+    };
   }
 }

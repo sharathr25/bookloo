@@ -1,4 +1,3 @@
-import { Location } from "../../core/models/Location";
 import { Business } from "../../core/models/business/Business";
 import { BusinessEnum } from "../../core/models/business/BusinessEnum";
 import { BusinessType } from "../models/Business";
@@ -18,15 +17,15 @@ export class BusinessMapper {
     } = business;
     const [longitude, latitude] = location.coordinates;
 
-    return new Business({
+    return {
       id: _id.toString(),
       rating: rating || undefined,
       numberOfRatings: numberOfRatings || undefined,
       stars: stars || undefined,
       type: BusinessEnum[type as keyof typeof BusinessEnum],
-      location: new Location({ longitude, latitude }),
+      location: { longitude, latitude },
       mediaUrls: mediaUrls.map(MediaUrlMapper.toCore),
       ...rest,
-    });
+    };
   }
 }

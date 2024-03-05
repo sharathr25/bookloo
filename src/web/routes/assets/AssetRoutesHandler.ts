@@ -30,7 +30,7 @@ export class AssetRoutesHandler {
     const { data, files }: { data: string; files: File[] } = body;
     const asset: AssetCreateDataSpecType = JSON.parse(data);
     await this.assetService.create(
-      AssetMapper.mapCreateSpec(params.businessId, files, asset)
+      AssetMapper.toCoreCreateSpec(params.businessId, files, asset)
     );
   }
 
@@ -59,7 +59,7 @@ export class AssetRoutesHandler {
     const asset: AssetUpdateDataSpecType = JSON.parse(data);
     this.assetService.update(
       params.assetId,
-      AssetMapper.mapUpdateSpec(files, asset)
+      AssetMapper.toCoreUpdateSpec(files, asset)
     );
   }
 

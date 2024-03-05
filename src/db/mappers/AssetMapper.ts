@@ -8,7 +8,7 @@ export class AssetMapper {
     const { _id, mediaUrls, capacity, roomNo, tableNo, bedNo, type, ...rest } =
       asset;
 
-    return new Asset({
+    return {
       id: _id.toString(),
       mediaUrls: mediaUrls.map(MediaUrlMapper.toCore),
       capacity: capacity || undefined,
@@ -17,6 +17,6 @@ export class AssetMapper {
       bedNo: bedNo || undefined,
       type: AssetEnum[type as keyof typeof AssetEnum],
       ...rest,
-    });
+    };
   }
 }
