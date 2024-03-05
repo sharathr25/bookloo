@@ -1,8 +1,8 @@
 import { Location } from "../../core/models/Location";
 import { Business as BusinessCore } from "../../core/models/business/Business";
-import { BusinessCreateSpec } from "../../core/models/business/BusinessCreateSpec";
+import { BusinessWebCreateSpec } from "../../core/models/business/BusinessWebCreateSpec";
 import { BusinessEnum } from "../../core/models/business/BusinessEnum";
-import { BusinessUpdateSpec } from "../../core/models/business/BusinessUpdateSpec";
+import { BusinessWebUpdateSpec } from "../../core/models/business/BusinessWebUpdateSpec";
 import { LocationType } from "../models/Location";
 import {
   BusinessCreateDataSpecType,
@@ -22,7 +22,7 @@ export class BusinessMapper {
     return { latitude, longitude };
   }
 
-  static mapCreateSpec(spec: BusinessCreateSpecType): BusinessCreateSpec {
+  static mapCreateSpec(spec: BusinessCreateSpecType): BusinessWebCreateSpec {
     const { data, files }: { data: string; files: File[] } = spec;
     const business: BusinessCreateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
@@ -32,12 +32,10 @@ export class BusinessMapper {
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
-      id: "",
-      mediaUrls: [],
     };
   }
 
-  static mapUpdateSpec(spec: BusinessUpdateSpecType): BusinessUpdateSpec {
+  static mapUpdateSpec(spec: BusinessUpdateSpecType): BusinessWebUpdateSpec {
     const { data, files }: { data: string; files: File[] } = spec;
     const business: BusinessUpdateDataSpecType = JSON.parse(data);
     const { location, features, type, ...rest } = business;
@@ -47,7 +45,6 @@ export class BusinessMapper {
       location: BusinessMapper.mapLocation(location),
       features: features.map(FeatureMapper.toCore),
       mediaFiles: files,
-      mediaUrls: [],
     };
   }
 

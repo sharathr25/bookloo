@@ -1,25 +1,23 @@
 import { FeatureMapper } from "./FeatureMapper";
 import { AssetCreateDataSpecType } from "../models/asset/AssetCreateSpec";
 import { AssetUpdateSpec } from "../../core/models/asset/AssetUpdateSpec";
-import { AssetCreateSpec } from "../../core/models/asset/AssetCreateSpec";
 import { Asset } from "../../core/models/asset/Asset";
 import { AssetType } from "../models/asset/Asset";
 import { MediaUrlMapper } from "./MediaUrlMapper";
+import { AssetWebCreateSpec } from "../../core/models/asset/AssetWebCreateSpec";
 
 export class AssetMapper {
   static toCoreCreateSpec(
     businessId: string,
     mediaFiles: File[],
     asset: AssetCreateDataSpecType
-  ): AssetCreateSpec {
+  ): AssetWebCreateSpec {
     const { features } = asset;
     return {
       ...asset,
       businessId,
       mediaFiles,
       features: features.map(FeatureMapper.toCore),
-      mediaUrls: [],
-      id: "",
     };
   }
 

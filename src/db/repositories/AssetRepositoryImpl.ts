@@ -1,20 +1,18 @@
 import { Asset } from "../../core/models/asset/Asset";
-import { AssetCreateSpec } from "../../core/models/asset/AssetCreateSpec";
+import { AssetDbCreateSpec } from "../../core/models/asset/AssetDbCreateSpec";
 import { AssetQuery } from "../../core/models/asset/AssetQuery";
-import { AssetUpdateSpec } from "../../core/models/asset/AssetUpdateSpec";
+import { AssetBaseUpdateSpec } from "../../core/models/asset/AssetBaseUpdateSpec";
 import { AssetRepository } from "../../core/repositories/AssetRepository";
 import { AssetMapper } from "../mappers/AssetMapper";
 import { AssetModel } from "../models/Asset";
 
 export class AssetRepositoryImpl implements AssetRepository {
-  async create(asset: AssetCreateSpec): Promise<undefined> {
-    const { mediaFiles, ...rest } = asset;
-    await new AssetModel(rest).save();
+  async create(asset: AssetDbCreateSpec): Promise<undefined> {
+    await new AssetModel(asset).save();
   }
 
-  async update(id: string, asset: AssetUpdateSpec): Promise<undefined> {
-    const { mediaFiles, ...rest } = asset;
-    await AssetModel.findByIdAndUpdate(id, rest);
+  async update(id: string, asset: AssetBaseUpdateSpec): Promise<undefined> {
+    await AssetModel.findByIdAndUpdate(id, asset);
   }
 
   async getById(id: string): Promise<Asset | null> {

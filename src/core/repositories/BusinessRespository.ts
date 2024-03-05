@@ -1,11 +1,11 @@
 import { Business } from "../models/business/Business";
-import { BusinessCreateSpec } from "../models/business/BusinessCreateSpec";
+import { BusinessDbCreateSpec } from "../models/business/BusinessDbCreateSpec";
 import { BusinessQuery } from "../models/business/BusinessQuery";
-import { BusinessUpdateSpec } from "../models/business/BusinessUpdateSpec";
+import { BusinessDbUpdateSpec } from "../models/business/BusinessDbUpdateSpec";
 
 export interface BusinessesRepository {
-  create(business: BusinessCreateSpec): Promise<undefined>;
-  update(id: string, business: BusinessUpdateSpec): Promise<undefined>;
+  create(business: BusinessDbCreateSpec): Promise<undefined>;
+  update(id: string, business: BusinessDbUpdateSpec): Promise<undefined>;
   getById(id: string): Promise<Business | null>;
   getAll(query: BusinessQuery): Promise<Business[]>;
   delete(id: string): Promise<undefined>;

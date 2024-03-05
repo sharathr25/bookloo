@@ -2,6 +2,7 @@ import { Static, t } from "elysia";
 import { Location } from "../Location";
 import { Feature } from "../Feature";
 import { BusinessEnumType } from "./BusinessEnum";
+import { MediaUrl } from "../MediaUrl";
 
 export const BusinessUpdateSpec = t.Object({
   data: t.String(),
@@ -16,8 +17,8 @@ export const BusinessUpdateDataSpec = t.Object({
   country: t.String(),
   pincode: t.String(),
   location: Location,
+  mediaUrls: t.Array(MediaUrl),
   mediaFiles: t.Files(),
-  mediaFilesToRemove: t.Array(t.String()),
   features: t.Array(Feature),
   stars: t.Optional(t.Number()),
   type: BusinessEnumType,

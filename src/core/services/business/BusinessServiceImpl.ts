@@ -1,9 +1,9 @@
 import { getMongoObjectId } from "../../../db/utils";
-import { Media } from "../../models/Media";
+import { MediaUrl } from "../../models/MediaUrl";
 import { Business } from "../../models/business/Business";
-import { BusinessCreateSpec } from "../../models/business/BusinessCreateSpec";
 import { BusinessQuery } from "../../models/business/BusinessQuery";
-import { BusinessUpdateSpec } from "../../models/business/BusinessUpdateSpec";
+import { BusinessWebUpdateSpec } from "../../models/business/BusinessWebUpdateSpec";
+import { BusinessWebCreateSpec } from "../../models/business/BusinessWebCreateSpec";
 import { BusinessesRepository } from "../../repositories/BusinessRespository";
 import { ObjectStorage } from "../ObjectStorage";
 import { BusinessService } from "./BusinessService";
@@ -20,16 +20,14 @@ export class BusinessServiceImpl implements BusinessService {
     this.objectStorage = objectStorage;
   }
 
-  async create(business: BusinessCreateSpec): Promise<undefined> {
-    const { mediaFiles } = business;
+  async create(business: BusinessWebCreateSpec): Promise<undefined> {
+    const { mediaFiles, ...rest } = business;
     const id = getMongoObjectId();
-    const mediaUrls: Media[] = await this.objectStorage.storeFiles(
+    const mediaUrls: MediaUrl[] = await this.objectStorage.storeFiles(
       id,
       mediaFiles
     );
-    business.id = id;
-    business.mediaUrls = mediaUrls;
-    await this.businessRepo.create(business);
+    await this.businessRepo.create({ id, mediaUrls, ...rest });
   }
 
   async getById(id: string): Promise<Business | null> {
@@ -40,14 +38,19 @@ export class BusinessServiceImpl implements BusinessService {
     return await this.businessRepo.getAll(query);
   }
 
-  async update(id: string, business: BusinessUpdateSpec): Promise<undefined> {
-    const { mediaFiles } = business;
-    const mediaUrls: Media[] = await this.objectStorage.storeFiles(
+  async update(
+    id: string,
+    business: BusinessWebUpdateSpec
+  ): Promise<undefined> {
+    const { mediaFiles, ...rest } = business;
+    const mediaUrls: MediaUrl[] = await this.objectStorage.storeFiles(
       id,
       mediaFiles
     );
-    business.mediaUrls = [...business.mediaUrls, ...mediaUrls];
-    await this.businessRepo.update(id, business);
+    await this.businessRepo.update(id, {
+      ...rest,
+      mediaUrls: [...rest.mediaUrls, ...mediaUrls],
+    });
   }
 
   async delete(id: string): Promise<undefined> {

@@ -1,11 +1,11 @@
 import { Asset } from "../models/asset/Asset";
-import { AssetCreateSpec } from "../models/asset/AssetCreateSpec";
+import { AssetDbCreateSpec } from "../models/asset/AssetDbCreateSpec";
 import { AssetQuery } from "../models/asset/AssetQuery";
-import { AssetUpdateSpec } from "../models/asset/AssetUpdateSpec";
+import { AssetDbUpdateSpec } from "../models/asset/AssetDbUpdateSpec";
 
 export interface AssetRepository {
-  create(asset: AssetCreateSpec): Promise<undefined>;
-  update(id: string, asset: AssetUpdateSpec): Promise<undefined>;
+  create(asset: AssetDbCreateSpec): Promise<undefined>;
+  update(id: string, asset: AssetDbUpdateSpec): Promise<undefined>;
   getById(id: string): Promise<Asset | null>;
   getAll(query: AssetQuery): Promise<Asset[]>;
   delete(id: string): Promise<undefined>;
