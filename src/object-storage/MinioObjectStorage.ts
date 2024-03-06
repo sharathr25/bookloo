@@ -2,28 +2,28 @@ import { Client } from "minio";
 import { ObjectStorage } from "../core/services/ObjectStorage";
 import { MediaUrl } from "../core/models/MediaUrl";
 import { MediaEnum } from "../core/models/MediaEnum";
+import { OBJECT_STORAGE } from "../config";
 
-const MINIO_SERVER_ENDPOINT = "127.0.0.1";
-const MINIO_SERVER_PORT = 9000;
-const MINIO_BUCKET_NAME = "bookloo";
+const { MINIO, BUCKET_NAME } = OBJECT_STORAGE;
+const { ENDPOINT, PORT, ACCESS_KEY, SECRET_KEY } = MINIO;
 
 export class MinioObjectStorage implements ObjectStorage {
   minioClient: Client;
 
   constructor() {
     this.minioClient = new Client({
-      endPoint: MINIO_SERVER_ENDPOINT,
-      port: MINIO_SERVER_PORT,
+      endPoint: ENDPOINT,
+      port: PORT,
       useSSL: false,
-      accessKey: "7NhIKSxhUuyC6JYKMpWl",
-      secretKey: "LoQeSb8gHexnJnVdX2I7UhnIECSKjDBryKzZbuyv",
+      accessKey: ACCESS_KEY,
+      secretKey: SECRET_KEY,
     });
   }
 
   async init() {
-    const bucketExists = await this.bucketExists(MINIO_BUCKET_NAME);
+    const bucketExists = await this.bucketExists(BUCKET_NAME);
     if (!bucketExists) {
-      await this.createBucket(MINIO_BUCKET_NAME);
+      await this.createBucket(BUCKET_NAME);
     }
   }
 
@@ -32,14 +32,14 @@ export class MinioObjectStorage implements ObjectStorage {
     const buffer = Buffer.from(arrBuffer);
     const fileName = `${folderName}/${file.name}`;
     await this.minioClient.putObject(
-      MINIO_BUCKET_NAME,
+      BUCKET_NAME,
       fileName,
       buffer,
       buffer.length
     );
 
     return {
-      url: `${MINIO_SERVER_ENDPOINT}:${MINIO_SERVER_PORT}/${fileName}`,
+      url: `${ENDPOINT}:${PORT}/${fileName}`,
       type: MediaEnum.IMAGE,
     };
   }

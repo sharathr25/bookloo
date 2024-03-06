@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
+import { MONGO } from "../config";
 
-const MONGO_URL = "mongodb://127.0.0.1:27017";
-const DB = "bookloo";
-
+const { URL, DB } = MONGO;
 export class Db {
   static async connet(): Promise<undefined> {
-    mongoose.connect(`${MONGO_URL}/${DB}`);
+    mongoose.connect(`${URL}/${DB}`);
   }
 }

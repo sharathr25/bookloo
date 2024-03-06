@@ -3,8 +3,9 @@ import { userRoutes } from "./routes/users";
 import { businessRoutes } from "./routes/businesses";
 import { assetRoutes } from "./routes/assets";
 import { reviewRoutes } from "./routes/reviews";
+import { THIS_SERVER } from "../config";
 
-const PORT = 3000;
+const { PORT } = THIS_SERVER;
 
 export class WebServer {
   static listen(): undefined {
