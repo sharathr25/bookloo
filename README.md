@@ -22,6 +22,10 @@
 - Go here https://min.io/download
 - and follow steps which suits your OS and install minio server
 - run `minio -v` to check installation is successful
+- start minio server <path where you want to store files>
+- then go here http://127.0.0.1:49558/access-keys and create access key
+- copy access key and secret key and set `MINIO_ACCRESS_KEY` and `MINIO_SECRET_KEY` respectively
+- and here http://192.168.29.29:49558/buckets create a bucket with name `bookloo` with public access policy
 
 ### Install deps
 

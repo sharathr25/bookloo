@@ -3,10 +3,8 @@ export const OBJECT_STORAGE = {
   MINIO: {
     ENDPOINT: process.env.MINIO_ENDPOINT || "127.0.0.1",
     PORT: process.env.MINIO_PORT ? +process.env.MINIO_PORT : 9000,
-    ACCESS_KEY: process.env.MINIO_ACCRESS_KEY || "7NhIKSxhUuyC6JYKMpWl",
-    SECRET_KEY:
-      process.env.MINIO_SECRET_KEY ||
-      "LoQeSb8gHexnJnVdX2I7UhnIECSKjDBryKzZbuyv",
+    ACCESS_KEY: process.env.MINIO_ACCRESS_KEY,
+    SECRET_KEY: process.env.MINIO_SECRET_KEY,
   },
 };
 export const THIS_SERVER = {
