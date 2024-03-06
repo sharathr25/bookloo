@@ -53,4 +53,4 @@ minio server <path where you want to store files>
 bun run dev
 ```
 
-- Open http://localhost:3000/ with your browser to see the result.
+- Open http://localhost:3000/swagger with your browser to see documentation.

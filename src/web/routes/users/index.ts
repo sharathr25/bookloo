@@ -1,5 +1,4 @@
 import Elysia from "elysia";
-import { UserRoutesHandler } from "./UserRoutes";
 
 export const userRoutes = new Elysia().group("/users", (app) =>
   app

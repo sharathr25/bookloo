@@ -4,13 +4,15 @@ import { businessRoutes } from "./routes/businesses";
 import { assetRoutes } from "./routes/assets";
 import { reviewRoutes } from "./routes/reviews";
 import { THIS_SERVER } from "../config";
+import { swagger } from "@elysiajs/swagger";
 
 const { PORT } = THIS_SERVER;
 
 export class WebServer {
   static listen(): undefined {
     const app = new Elysia()
-      .use(userRoutes)
+      .use(swagger())
+      // .use(userRoutes)
       .use(assetRoutes)
       .use(reviewRoutes)
       .use(businessRoutes)
