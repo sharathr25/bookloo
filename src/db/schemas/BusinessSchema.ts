@@ -24,4 +24,5 @@ export const BusinessSchema = new Schema({
   mediaUrls: { type: [MediaSchema], default: [] },
   features: { type: [FeatureSchema], default: [] },
   type: { type: String, enum: Object.values(BusinessEnum), required: true },
+  __v: { type: Number },
 });

@@ -1,10 +1,9 @@
 import { BusinessIdSpecType } from "../../models/business/BusinessIdSpec";
 import { ReviewService } from "../../../core/services/review/ReviewService";
-import { ReviewIdSpecType } from "../../models/review/ReviewIdSpec";
+import { ReviewGetOneSpecType } from "../../models/review/ReviewGetOneSpec";
 import { ReviewCreateSpecType } from "../../models/review/ReviewCreateSpec";
 import { ReviewMapper } from "../../mappers/ReviewMapper";
 import { Review } from "../../../core/models/review/Review";
-import { ReviewDeleteSpecType } from "../../models/review/ReviewDeleteSpec";
 
 export class ReviewRoutesHandler {
   reviewService: ReviewService;
@@ -32,7 +31,7 @@ export class ReviewRoutesHandler {
     return reviews.map(ReviewMapper.toRest);
   }
 
-  async getOne({ params, set }: { params: ReviewIdSpecType; set: any }) {
+  async getOne({ params, set }: { params: ReviewGetOneSpecType; set: any }) {
     const review: Review | null = await this.reviewService.getById(
       params.reviewId
     );
@@ -43,7 +42,7 @@ export class ReviewRoutesHandler {
     return ReviewMapper.toRest(review);
   }
 
-  async delete({ params }: { params: ReviewDeleteSpecType }) {
+  async delete({ params }: { params: ReviewGetOneSpecType }) {
     this.reviewService.delete(params.reviewId);
   }
 }

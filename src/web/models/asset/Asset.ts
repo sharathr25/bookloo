@@ -14,6 +14,7 @@ export const Asset = t.Object({
   mediaUrls: t.Array(MediaUrl),
   capacity: t.Optional(t.Number()),
   features: t.Array(Feature),
+  tableNo: t.Optional(t.Number()),
   roomNo: t.Optional(t.Number()),
   bedNo: t.Optional(t.Number()),
   type: AssetEnumType,

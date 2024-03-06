@@ -16,4 +16,5 @@ export const ReviewSchema = new Schema({
   rating: { type: Number, required: true },
   review: { type: String, required: true },
   user: { type: UserSchema, required: true },
+  __v: { type: Number },
 });

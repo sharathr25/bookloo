@@ -13,6 +13,7 @@ export class BusinessMapper {
       stars,
       type,
       mediaUrls,
+      __v,
       ...rest
     } = business;
     const [longitude, latitude] = location.coordinates;

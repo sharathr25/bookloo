@@ -22,4 +22,5 @@ export const AssetSchema = new Schema({
   bedNo: { type: Number },
   capacity: { type: Number },
   type: { type: String, enum: Object.values(AssetEnum), required: true },
+  __v: { type: Number },
 });

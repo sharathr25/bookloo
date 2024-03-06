@@ -3,7 +3,7 @@ import { ReviewType } from "../models/Review";
 
 export class ReviewMapper {
   static toCore(review: ReviewType): Review {
-    const { _id, user, ...rest } = review;
+    const { _id, user, __v, ...rest } = review;
     const { profilePicUrl, ...rest2 } = user;
 
     return {

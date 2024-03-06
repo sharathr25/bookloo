@@ -3,11 +3,10 @@ import { AssetQuerySpec } from "../../models/asset/AssetQuerySpec";
 import { BusinessIdSpec } from "../../models/business/BusinessIdSpec";
 import { reviewService } from "../../../core/services/review";
 import { ReviewRoutesHandler } from "./ReviewRouteHandler";
-import { ReviewIdSpec } from "../../models/review/ReviewIdSpec";
+import { ReviewGetOneSpec } from "../../models/review/ReviewGetOneSpec";
 import { ReviewCreateSpec } from "../../models/review/ReviewCreateSpec";
 import { Reviews } from "../../models/review/Reviews";
 import { Review } from "../../models/review/Review";
-import { ReviewDeleteSpec } from "../../models/review/ReviewDeleteSpec";
 
 const reviewRoutesHandler = new ReviewRoutesHandler(reviewService);
 
@@ -24,7 +23,7 @@ export const reviewRoutes = new Elysia().group(
         response: Reviews,
       })
       .get("/:reviewId", reviewRoutesHandler.getOne.bind(reviewRoutesHandler), {
-        params: ReviewIdSpec,
+        params: ReviewGetOneSpec,
         response: {
           200: Review,
           404: t.Null(),
@@ -34,7 +33,7 @@ export const reviewRoutes = new Elysia().group(
         "/:reviewId",
         reviewRoutesHandler.delete.bind(reviewRoutesHandler),
         {
-          params: ReviewDeleteSpec,
+          params: ReviewGetOneSpec,
         }
       )
 );

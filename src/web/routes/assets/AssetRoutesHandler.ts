@@ -9,9 +9,9 @@ import {
   AssetCreateDataSpecType,
 } from "../../models/asset/AssetCreateSpec";
 import { AssetMapper } from "../../mappers/AssetMapper";
-import { AssetIdSpecType } from "../../models/asset/AssetIdSpec";
 import { BusinessIdSpecType } from "../../models/business/BusinessIdSpec";
 import { Asset } from "../../../core/models/asset/Asset";
+import { AssetGetOneSpecType } from "../../models/asset/AssetGetOneSpec";
 
 export class AssetRoutesHandler {
   assetService: AssetService;
@@ -39,7 +39,7 @@ export class AssetRoutesHandler {
     return assets.map(AssetMapper.toRest);
   }
 
-  async getOne({ params, set }: { params: AssetIdSpecType; set: any }) {
+  async getOne({ params, set }: { params: AssetGetOneSpecType; set: any }) {
     const asset: Asset | null = await this.assetService.getById(params.assetId);
     if (!asset) {
       set.status = 404;
@@ -52,18 +52,18 @@ export class AssetRoutesHandler {
     params,
     body,
   }: {
-    params: AssetIdSpecType;
+    params: AssetGetOneSpecType;
     body: AssetUpdateSpecType;
   }) {
     const { data, files }: { data: string; files: File[] } = body;
     const asset: AssetUpdateDataSpecType = JSON.parse(data);
     this.assetService.update(
       params.assetId,
-      AssetMapper.toCoreUpdateSpec(files, asset)
+      AssetMapper.toCoreUpdateSpec(params.businessId, files, asset)
     );
   }
 
-  async delete({ params }: { params: AssetIdSpecType }) {
+  async delete({ params }: { params: AssetGetOneSpecType }) {
     this.assetService.delete(params.assetId);
   }
 }
